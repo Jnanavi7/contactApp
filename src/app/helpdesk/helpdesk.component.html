@@ -1,0 +1,54 @@
+<button type="button" (click)="onclickAdd()" class="btn btn btn-primary mt-5 ms-4 px-3" data-bs-toggle="modal"
+    data-bs-target="#exampleModal">
+    Add new group
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">ADD GROUP DETAILS</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="helpDeskform">
+                    <div class="form-group mb-3">
+                        <label for="groupName">Group Name</label>
+                        <input
+                            [class.is-invalid]="helpDeskform.get('groupName')?.invalid && helpDeskform.get('groupName')?.touched"
+                            type="text" formControlName="groupName" class="form-control" id="groupName"
+                            aria-describedby="emailHelp" placeholder="Enter helpDesk">
+                        <small [class.d-none]="helpDeskform.get('groupName')?.valid ||
+                        helpDeskform.get('groupName')?.untouched" class=" text-danger">Group Name is required</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal"
+                    aria-label="Close">Cancel</button>
+                <button (click)="addhelpDesk()" [disabled]="helpDeskform.invalid" type="button" class="btn btn-primary"
+                    *ngIf="showAdd">ADD</button>
+                <button (click)="updatehelpDesk()" [disabled]="helpDeskform.invalid" type="button"
+                    class="btn btn-primary" *ngIf="showUpdate">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 col-xl-4" *ngFor="let row of helpDeskData">
+            <div class="card p-3 cdbackground" style="width: 18rem">
+                <div class="card-body p-5">
+                    <h4 class="card-title">{{row.groupName}}</h4>
+                    <p class="card-text">So many Contacts? Keep it hassle free,Curate your own contact group name here
+                    </p>
+                    <button (click)="onEdithelpDesk(row)" class="btn btn-primary me-3" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Edit</button>
+                    <button (click)="deletehelpDesk(row)" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

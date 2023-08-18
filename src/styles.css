@@ -1,0 +1,49 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #16161a;
+    color: #fffffe;
+    /* background-color: #d8eefe;
+    color: #094067; */
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn-primary,.btn-primary:hover {
+    background-color: #7f5af0;
+    color: #fffffe;
+    /* background-color: #3da9fc;
+    color: #fffffe; */
+}
+.text {
+    color: #fffffe;
+    /* color: #094067; */
+    font-weight: bold;
+}
+
+.table-text{
+    color:  #fffffe;
+    /* color: #094067; */
+}
+
+.card {
+    border-radius: 4px;
+    background:#242629;
+    color: #fffffe;
+    /* background-color: #fffffe;
+    color: #094067; */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    padding: 14px 80px 18px 36px;
+    cursor: pointer;
+    padding: 1.5em .5em .5em;
+    border-radius: 2em;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}

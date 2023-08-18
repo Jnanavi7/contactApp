@@ -1,0 +1,29 @@
+<div *ngFor="let row of contactData">
+    <div class="card ms-5 mt-5" style="max-width: 1100px;">
+        <div class="card-body">
+            <h3 class="card-title"> <img src={{row.imgSrc}}
+                    class="img-fluid profile-image-pic img-thumbnail rounded-circle" width="100px" alt="profile">
+                {{row.name}}</h3>
+            <table class="table table-borderless table-text">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Birthday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{row.name}}</td>
+                        <td>{{row.phone}}</td>
+                        <td>{{row.selectGroup}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.birthday}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

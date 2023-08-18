@@ -1,0 +1,112 @@
+<button type="button" (click)="onClickAdd()" class="btn btn-primary mt-5 ms-5 px-3" data-bs-toggle="modal"
+    data-bs-target="#exampleModal">
+    Add Contact Details
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ADD CONTACT DETAILS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="contactForm">
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label for="name">Name</label>
+                        <input [class.is-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+                            type="text" formControlName="name" name="name" class="form-control" id="name"
+                            aria-describedby="emailHelp" placeholder="Enter Name">
+                        <small [class.d-none]="contactForm.get('name')?.valid ||
+                            contactForm.get('name')?.untouched" class=" text-danger">Name is required</small>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="phone">Phone</label>
+                        <input
+                            [class.is-invalid]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+                            type="text" formControlName="phone" name="phone" class="form-control" id="phone"
+                            aria-describedby="emailHelp" placeholder="Enter PhoneNo">
+                        <small [class.d-none]="contactForm.get('phone')?.valid ||
+                            contactForm.get('phone')?.untouched" class=" text-danger">PhoneNo is required</small>
+                    </div>
+
+                    <select class="form-select" aria-label="Default select example" formControlName="selectGroup"
+                        (change)="onChangeEvent($event)" placeholder="select Group">
+                        <option selected>select group</option>
+                        <option *ngFor="let group of helpDeskData" [value]="group.groupName">{{group.groupName}}
+                        </option>
+                        <small [class.d-none]="contactForm.get('selectGroup')?.valid ||
+                        contactForm.get('selectGroup')?.untouched" class=" text-danger">group is required</small>
+                    </select>
+
+                    <div class="form-group mb-3">
+                        <label for="email">Email</label>
+                        <input
+                            [class.is-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                            type="email" formControlName="email" name="email" class="form-control" id="email"
+                            aria-describedby="emailHelp" placeholder="Enter Email">
+                        <small [class.d-none]="contactForm.get('email')?.valid ||
+                            contactForm.get('email')?.untouched" class=" text-danger">Email is required</small>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="birthday">Birthday</label>
+                        <input
+                            [class.is-invalid]="contactForm.get('birthday')?.invalid && contactForm.get('birthday')?.touched"
+                            type="date" formControlName="birthday" name="birthday" class="form-control" id="birthday"
+                            aria-describedby="emailHelp">
+                        <small [class.d-none]="contactForm.get('birthday')?.valid ||
+                            contactForm.get('birthday')?.untouched" class=" text-danger">Birthday is required</small>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    aria-label="Close">Cancel</button>
+                <button type="button" (click)="addContactsData()" [disabled]="contactForm.invalid"
+                    class="btn btn-primary" *ngIf="showAdd">ADD</button>
+                <button (click)="updateContactsData()" [disabled]="contactForm.invalid" type="button"
+                    class="btn btn-primary" *ngIf="showUpdate">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let row of contactData">
+    <div class="card p-3 mb-5 ms-5 mt-5" style="max-width: 1100px;">
+        <div class="card-body">
+            <h3 class="card-title"> <img src={{row.imgSrc}}
+                    class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="100px" alt="profile">
+                {{row.name}}</h3>
+            <table class="table table-borderless table-text">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Birthday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{row.name}}</td>
+                        <td>{{row.phone}}</td>
+                        <td>{{row.selectGroup}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.birthday}}</td>
+                        <td><button class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            (click)="onEditContactData(row)">Edit</button>
+                            <button class="btn btn-primary" (click)="deleteContactsData(row.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
